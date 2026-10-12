@@ -20,7 +20,14 @@ public class SubscriptionController {
 	@GetMapping("/subscriptions")
 	public String subscriptions(Model model) {
 		
+		int totalPrice = 0;
+		
+		for  (Subscription subscription : subscriptions) {
+			totalPrice += subscription.getPrice();
+		}
+		
 		model.addAttribute("subscriptions" , subscriptions);
+		model.addAttribute("totalPrice", totalPrice);
 		
 		return "subscriptions";	
 		}
