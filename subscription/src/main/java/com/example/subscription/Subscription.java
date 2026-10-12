@@ -3,14 +3,16 @@ import java.time.LocalDate;
 
 public class Subscription {
 	
+	private int id;
 	private String serviceName;
 	private int price;
 	private String billingCycle;
 	private LocalDate nextRenewalDate;
 	
-	public Subscription (String serviceName, int price,
+	public Subscription (int id,String serviceName, int price,
 			String billingCycle, LocalDate nextRenewalDate) {
 		
+		this.id = id;
 		this.serviceName = serviceName;
 		this.price = price;
 		this.billingCycle = billingCycle;
@@ -31,6 +33,26 @@ public class Subscription {
 	
 	public LocalDate getNextRenewalDate() {
 		return nextRenewalDate;
+	}
+	
+	public int getId() {
+		return id;
+	}
+	
+	public void setServiceName(String servicename) {
+		this.serviceName = serviceName;
+	}
+	
+	public void setPrice(int price) {
+		this.price = price;
+	}
+	
+	public void setBillingCycle(String billingCycle) {
+		this.billingCycle = billingCycle;
+	}
+	
+	public void setNextRenewalDate(LocalDate nextRenewalDate) {
+		this.nextRenewalDate = nextRenewalDate;
 	}
 
 }

@@ -19,6 +19,10 @@
 		<p>
 			<span th:text="${subscription.serviceName}"></span>
 			<span th:text="${subscription.price}"></span>円
+			
+		<a th:href="@{/subscriptions/{id}/edit(id=${subscription.id})}">
+			編集
+		</a>
 		</p>
 	</div>
 

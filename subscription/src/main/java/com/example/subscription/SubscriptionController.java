@@ -7,14 +7,15 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
 
 @Controller
 public class SubscriptionController {
 	
 	private List<Subscription> subscriptions = new ArrayList<>();
+	private int nextId = 1;
 	
 	
 	@GetMapping("/subscriptions")
@@ -46,12 +47,49 @@ public String createSubscription(
 		@RequestParam LocalDate nextRenewalDate) {
 	
 	Subscription subscription = new Subscription(
-			serviceName, price, billingCycle, nextRenewalDate
+			 nextId,serviceName, price, billingCycle, nextRenewalDate
 			);
 	
 	subscriptions.add(subscription);
+	nextId++;
 	
 	
 	return "redirect:/subscriptions";
 }
+
+@GetMapping("/subscriptions/{id}/edit")
+public String editSubscription(
+		@PathVariable("id") int id,
+		Model model) {
+for(Subscription subscription : subscriptions) {
+	if (subscription.getId() == id) {
+		model.addAttribute("subscription" , subscription);
+		break;
+	}
 }
+return "subscription-edit";
+}
+
+@PostMapping("/subscriptions/{id}/edit")
+public String updateSubscription(
+		@PathVariable("id") int id,
+		@RequestParam String serviceName,
+		@RequestParam int price,
+		@RequestParam String billingCycle,
+		@RequestParam LocalDate nextRenewalDate) {
+	
+	for(Subscription subscription : subscriptions) {
+		if(subscription.getId() == id) {
+			subscription.setServiceName(serviceName);
+			subscription.setPrice(price);
+			subscription.setBillingCycle(billingCycle);
+			subscription.setNextRenewalDate(nextRenewalDate);
+			break;
+		}
+	}
+	
+	return "redirect:/subscriptions";
+}
+		
+	}
+
