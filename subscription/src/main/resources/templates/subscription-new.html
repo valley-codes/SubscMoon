@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>サブスク登録</title>
+</head>
+<body>
+	
+	<h1>サブスクを登録する</h1>
+	
+	<form action="/subscriptions" method="post">
+		
+		<div>
+			<lavel>サービス名</lavel>
+			<input type="text" name="serviceName">
+		</div>
+		
+		<div>
+			<label>料金</label>
+			<input type="number" name="price" required>
+		</div>
+		
+		<div>
+			<label>請求サイクル</label>
+			<select name="billingCycle">
+				<option value="月額">月額</option>
+				<option value="年額">年額</option>
+			</select>
+		</div>
+		
+		<div>
+			<label>次回更新日</label>
+			<input type="date" name="nextRenewalDate" required>
+		</div>
+		
+		<button type="submit">登録する</button>
+	</form>
+
+</body>
+</html>

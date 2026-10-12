@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>サブスク管理</title>
+</head>
+<body>
+	<t1>サブスク管理</t1>
+	
+	<p>今月のサブスク合計</p>
+	
+	<a href="/subscriptions/new">+　サブスクを登録する</a>
+	
+	<h2>登録中のサブスク</h2>
+	
+	<div th:each="subscription : ${subscriptions}">
+		<p>
+			<span th:text="${subscription.serviceName}"></span>
+			<span th:text="${subscription.price}"></span>円
+		</p>
+	</div>
+
+</body>
+</html>
