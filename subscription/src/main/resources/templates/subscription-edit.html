@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>サブスク編集</title>
+</head>
+<body>
+	<h1>サブスク編集</h1>
+	
+	<form th:action="@{/subscriptions/{id}/edit(id=${subscription.id})}" method="post">
+		<div>
+			<label>サービス名</label>
+			<input type="text"
+					name="serviceName"
+					th:value="${subscription.serviceName}">
+		</div>
+		
+		<div>
+			<label>料金</label>
+			<input type ="number"
+					name="price"
+					th:value="${subscription.price}">
+		</div>
+		
+		<div>
+			<lavel>支払い周期</lavel>
+			<select name="billingCycle">
+				<option value="月額">月額</option>
+				<option value="年額">年額</option>
+			</select>
+		</div>
+		
+		<div>
+			<lavel>次回更新日</lavel>
+			<input type="date"
+					name="nextRenewalDate"
+					th:value="${subscription.nextRenewalDate}">
+		</div>
+		
+		<button type="submit">更新する</button>
+		
+	</form>
+
+</body>
+</html>

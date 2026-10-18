@@ -23,6 +23,14 @@
 		<a th:href="@{/subscriptions/{id}/edit(id=${subscription.id})}">
 			編集
 		</a>
+		
+		<form th:action="@{subscriptions/{id}/delete(id=${subscription.id})}"
+		method="post"
+		style="display:inline;">
+	
+	<button type="submit">削除</button>
+	
+	</form>
 		</p>
 	</div>
 

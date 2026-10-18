@@ -17,7 +17,7 @@ public class SubscriptionController {
 	private List<Subscription> subscriptions = new ArrayList<>();
 	private int nextId = 1;
 	
-	
+	//サブスク一覧
 	@GetMapping("/subscriptions")
 	public String subscriptions(Model model) {
 		
@@ -33,12 +33,13 @@ public class SubscriptionController {
 		return "subscriptions";	
 		}
 
-
+//サブスク登録画面
 @GetMapping("/subscriptions/new")
 public String subscription() {
 	return "subscription-new";
 	}
 
+//サブスク登録
 @PostMapping("/subscriptions")
 public String createSubscription(
 		@RequestParam String serviceName,
@@ -57,6 +58,7 @@ public String createSubscription(
 	return "redirect:/subscriptions";
 }
 
+//サブスク編集画面
 @GetMapping("/subscriptions/{id}/edit")
 public String editSubscription(
 		@PathVariable("id") int id,
@@ -70,6 +72,7 @@ for(Subscription subscription : subscriptions) {
 return "subscription-edit";
 }
 
+//サブスク更新
 @PostMapping("/subscriptions/{id}/edit")
 public String updateSubscription(
 		@PathVariable("id") int id,
@@ -87,9 +90,31 @@ public String updateSubscription(
 			break;
 		}
 	}
+
 	
 	return "redirect:/subscriptions";
 }
 		
+
+//サブスク削除
+@PostMapping("/subscriptions/{id}/delete")
+public String deleteSubscription(@PathVariable int id) {
+	
+	Subscription deleteSubscription = null;
+	
+	for(Subscription subscription : subscriptions) {
+		
+		if(subscription.getId() == id) {
+			deleteSubscription = subscription;
+			break;
+		}
 	}
+	
+	if(deleteSubscription != null) {
+		subscriptions.remove(deleteSubscription);
+	}
+	
+	return"redirect:/subscriptions";
+	}
+}
 
