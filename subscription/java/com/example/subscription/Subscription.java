@@ -8,6 +8,8 @@ public class Subscription {
 	private int price;
 	private String billingCycle;
 	private LocalDate nextRenewalDate;
+	public Subscription() {
+	}
 	
 	public Subscription (int id,String serviceName, int price,
 			String billingCycle, LocalDate nextRenewalDate) {
